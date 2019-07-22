@@ -1,0 +1,12 @@
+{
+    "python.pythonPath": "venv\\Scripts\\python.exe",
+    "git.ignoreLimitWarning": true
+    "name": "Python: Current File (Integrated Terminal)",
+    "type": "python",
+    "request": "launch",
+    "program": "${file}",
+    "cwd": "${workspaceRoot}",
+    "env": {"PYTHONPATH": "${workspaceRoot}"},
+    "console": "integratedTerminal",
+    PYTHONPATH="~/.virtualenvs/evernote/bin/python:lib"
+}

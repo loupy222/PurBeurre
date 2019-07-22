@@ -1,42 +1,56 @@
 import requests, json
+from dataclasses import dataclass
+from clear_data import CleanFile
 
-link1 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=Snacks&page_size=1000&search_simple=1&action=process&page=2&json=1"
-link2 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=Pizza&page_size=1000&search_simple=1&action=process&page=2&json=1"
-link3 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=Eau&page_size=1000&search_simple=1&action=process&page=2&json=1"
-link4 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=Fuits&page_size=1000&search_simple=1&action=process&page=2&json=1"
-link5 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=Pates&page_size=1000&search_simple=1&action=process&page=2&json=1"
+@dataclass
+class DownloadFiles:
+    snacks = list
+    pizza = list
+    water = list
+    cheese = list
+    pasta = list
+    products = list
+
+
+link1 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=snacks&page_size=1000&search_simple=1&action=process&page=2&json=1"
+link2 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=pizza&page_size=1000&search_simple=1&action=process&page=2&json=1"
+link3 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=eau&page_size=1000&search_simple=1&action=process&page=2&json=1"
+link4 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=fromages&page_size=1000&search_simple=1&action=process&page=2&json=1"
+link5 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=pates&page_size=1000&search_simple=1&action=process&page=2&json=1"
 
 r = requests.get(link1)
 
-Snacks = json.loads(r.content)
+snacks = json.loads(r.content)
 
-with open('Snacks.json', 'w') as f:
-    json.dump(Snacks, f)
+snacks = CleanFile.clean_data(snacks)
+
 
 r = requests.get(link2)
 
-Pizza = json.loads(r.content)
+pizza = json.loads(r.content)
 
-with open('Pizza.json', 'w') as f:
-    json.dump(Pizza, f)
+pizza = CleanFile.clean_data(pizza)
+
 
 r = requests.get(link3)
 
-Eau = json.loads(r.content)
+water = json.loads(r.content)
 
-with open('Eau.json', 'w') as f:
-    json.dump(Eau, f)
+water = CleanFile.clean_data(water)
+
 
 r = requests.get(link4)
 
-Fruits = json.loads(r.content)
+cheese = json.loads(r.content)
 
-with open('Fruits.json', 'w') as f:
-    json.dump(Fruits, f)
+cheese = CleanFile.clean_data(cheese)
+
 
 r = requests.get(link5)
 
-Pates = json.loads(r.content)
+pasta = json.loads(r.content)
 
-with open('Pates.json', 'w') as f:
-    json.dump(Pates, f)
+pasta = CleanFile.clean_data(pasta)
+
+
+products = snacks + pizza + water + cheese + pasta

@@ -1,0 +1,4 @@
+#!C:\Users\loupy\OneDrive\Bureau\OPENCLASSROOMS\Projet5\PurBeurre\venv\Scripts\python.exe
+
+import dodgy.run
+dodgy.run.run()

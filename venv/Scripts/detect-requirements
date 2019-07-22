@@ -1,0 +1,3 @@
+#!C:\Users\loupy\OneDrive\Bureau\OPENCLASSROOMS\Projet5\PurBeurre\venv\Scripts\python.exe
+from requirements_detector.run import run
+run()
