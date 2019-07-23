@@ -6,7 +6,7 @@ class User:
 
 @dataclass
 class Product:
-    Bar_code: int
+    _id : int
     Name: str
     Url_link: str
     Ingredients: list

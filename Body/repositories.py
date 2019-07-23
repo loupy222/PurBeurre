@@ -1,10 +1,16 @@
 import psycopg2
 from dataclasses import dataclass
+from Data.download_products import products
 
 
 con = psycopg2.connect(database="Pure_Beurre", user="loupy", host="localhost", password="bcxau9p^^123")
 
 cur = con.cursor()
+
+@dataclass
+class UpdateRepository:
+
+
 
 @dataclass
 class UserRepository:

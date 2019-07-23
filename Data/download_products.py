@@ -4,6 +4,9 @@ from clear_data import CleanFile
 
 @dataclass
 class DownloadFiles:
+    """
+    Class allowing to download and filter the products to be inserted in the Data Base.
+    """
     snacks = list
     pizza = list
     water = list
@@ -20,9 +23,9 @@ link5 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=pates&page_size=
 
 r = requests.get(link1)
 
-snacks = json.loads(r.content)
+snacks = json.loads(r.content)# rec the data in a variable
 
-snacks = CleanFile.clean_data(snacks)
+snacks = CleanFile.clean_data(snacks) # cleanup the data
 
 
 r = requests.get(link2)
@@ -52,5 +55,6 @@ pasta = json.loads(r.content)
 
 pasta = CleanFile.clean_data(pasta)
 
+products = snacks + pizza + water + cheese + pasta # all the data if needed
 
-products = snacks + pizza + water + cheese + pasta
+print("We have now " + len(products) + "ready to go!!!")
