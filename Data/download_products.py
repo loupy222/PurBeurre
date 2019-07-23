@@ -57,4 +57,4 @@ pasta = CleanFile.clean_data(pasta)
 
 products = snacks + pizza + water + cheese + pasta # all the data if needed
 
-print("We have now " + len(products) + "ready to go!!!")
+print("We have now ", len(products), "ready to go!!!")
