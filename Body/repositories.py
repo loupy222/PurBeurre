@@ -1,11 +1,15 @@
-import psycopg2
+"""import psycopg2"""
+from peewee import *
 from dataclasses import dataclass
 from Data.download_products import products
 
 
-con = psycopg2.connect(database="Pure_Beurre", user="loupy", host="localhost", password="bcxau9p^^123")
+"""con = psycopg2.connect(database="Pure_Beurre", user="PureBeurre", host="localhost", password="12345678")
 
-cur = con.cursor()
+cur = con.cursor()"""
+
+pg_db = PostgresqlDatabase('Pure_Beurre', user='PureBeurre', password='12345678',
+                           host='localhost', port=5432)
 
 @dataclass
 class UpdateRepository:
@@ -40,4 +44,4 @@ class RelationProductsAndCategories:
 class RelationProductsAndStores:
     pass
 
-con.close()
+"""con.close()"""
