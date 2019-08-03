@@ -41,13 +41,13 @@ Category.create_table()
 
 class Product(peewee.Model):
     """ Class to define the Product table."""
-    _id = peewee.BigIntegerField(primary_key=True)
-    product_name_fr = peewee.TextField()
-    stores_tags = peewee.ForeignKeyField(Store, backref='product')
-    url = peewee.TextField()
+    _id = peewee.CharField(primary_key=True)
     categories = peewee.ForeignKeyField(Category, backref='product')
     ingredients_text_fr = peewee.TextField()
     nutrition_grade_fr = peewee.CharField()
+    product_name_fr = peewee.TextField()
+    stores_tags = peewee.ForeignKeyField(Store, backref='product')
+    url = peewee.TextField()
 
     class Meta:                
         database = pg_db
@@ -92,7 +92,7 @@ class ProductStore(peewee.Model):
 
 ProductStore.create_table()
    
-pr = DataFiles.products
+pr = DataFiles.snacks
 
 """(marche_pas)""""""def rec_products():
     try:
@@ -104,7 +104,7 @@ pr = DataFiles.products
         return Product.get(Product._id == _id)
 ent_data = rec_products()"""
 
-def insert_products():
+def insert_data():
     try:
         fields = [Product._id,
          Product.product_name_fr,
@@ -116,5 +116,5 @@ def insert_products():
         query1.execute()
     except peewee.IntegrityError:
         pass
-i_p= insert_products()
+i_p= insert_data()
         

@@ -15,11 +15,11 @@ class DataFiles:
     products = list
 
 
-    link1 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=snacks&page_size=1000&search_simple=1&action=process&page=2&json=1"
-    link2 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=pizza&page_size=1000&search_simple=1&action=process&page=2&json=1"
-    link3 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=boisons&page_size=1000&search_simple=1&action=process&page=2&json=1"
-    link4 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=fromages&page_size=1000&search_simple=1&action=process&page=2&json=1"
-    link5 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=pates&page_size=1000&search_simple=1&action=process&page=2&json=1"
+    link1 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=snacks&page_size=50&search_simple=1&action=process&page=2&json=1"
+    link2 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=pizza&page_size=50&search_simple=1&action=process&page=2&json=1"
+    link3 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=boisons&page_size=50&search_simple=1&action=process&page=2&json=1"
+    link4 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=fromages&page_size=50&search_simple=1&action=process&page=2&json=1"
+    link5 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=pates&page_size=50&search_simple=1&action=process&page=2&json=1"
 
     print( "Program started let's do some work now!")
     r = requests.get(link1)
@@ -45,7 +45,6 @@ class DataFiles:
 
     snacks = CleanFile.clean_data(snacks) # cleanup the data
     print("We have now ", len( snacks ), "products downloaded and cleaned!")
-
 
     pizzas = CleanFile.clean_data(pizzas)
     l0 = snacks + pizzas
