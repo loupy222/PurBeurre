@@ -8,5 +8,5 @@
     "cwd": "${workspaceRoot}",
     "env": {"PYTHONPATH": "${workspaceRoot}"},
     "console": "integratedTerminal",
-    PYTHONPATH="~/.virtualenvs/evernote/bin/python:lib"
+    "python.venvPath":"~/.virtualenvs/evernote/bin/python:lib"
 }

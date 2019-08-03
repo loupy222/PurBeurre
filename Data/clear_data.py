@@ -16,21 +16,22 @@ class CleanFile:
         "url",
         "categories",
         "ingredients_text_fr",
-        "nutrition-score"] #list of the labels to search, test and add to the new list
+        "nutrition_grade_fr"] #list of the labels to search, test and add to the new list
         
-        print ( "l'est go some clean up job")
+        print ( "Let's do some clean-up job!")
         processed_products = [] 
 
         for product in products:# the list contains dictionaries
             current_product = {}
 
-            for p_label, p_value in product.items(): #test if the labels and values are in the dictionaru
+            for p_label, p_value in product.items(): #test if the labels and values are in the dictionary
+                if p_label in wanted_labels:
+                    if len(p_value) != 0:      
+                        current_product.update({p_label: p_value})
+                        # add to current_product if key and value are present
 
-                if p_label in wanted_labels:# test if the labels are in the dictionaru
-                    if p_value != [] or "" "":# test if values aren't empty                                          
-                        current_product.update({p_label: p_value})# add if data is present and not blanc
-
-            processed_products.append(current_product)# add result to the new list
-        file = processed_products
-        return file #return file
-
+            if len(current_product) == 7:
+                if current_product not in processed_products: 
+                    processed_products.append(current_product)
+                    
+        return processed_products #return file
