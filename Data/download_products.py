@@ -13,13 +13,17 @@ class DataFiles:
     cheese = list
     pasta = list
     products = list
+    categories = list
+    stores_tags = list
 
-
-    link1 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=snacks&page_size=50&search_simple=1&action=process&page=2&json=1"
-    link2 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=pizza&page_size=50&search_simple=1&action=process&page=2&json=1"
-    link3 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=boisons&page_size=50&search_simple=1&action=process&page=2&json=1"
-    link4 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=fromages&page_size=50&search_simple=1&action=process&page=2&json=1"
-    link5 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=pates&page_size=50&search_simple=1&action=process&page=2&json=1"
+    """
+    Modul to download, clean and parse the products-file.
+    """
+    link1 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=snacks&page_size=100&search_simple=1&action=process&page=2&json=1"
+    link2 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=pizza&page_size=100&search_simple=1&action=process&page=2&json=1"
+    link3 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=boisons&page_size=100&search_simple=1&action=process&page=2&json=1"
+    link4 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=fromages&page_size=100&search_simple=1&action=process&page=2&json=1"
+    link5 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=pates&page_size=100&search_simple=1&action=process&page=2&json=1"
 
     print( "Program started let's do some work now!")
     r = requests.get(link1)
@@ -60,9 +64,20 @@ class DataFiles:
 
     pasta = CleanFile.clean_data(pasta)
     l3 = l2 + pasta
-    print("We have now", len( l3 ), "all products downloaded, and cleaned! Now let's save them ;-) !")
+    print("We have now", len( l3 ), "all products downloaded, and cleaned!")
 
     products = l3
+    products = CleanFile.clean_products(products)
+    print("After a hard cleaning job we have", len(products), "let's put them in the Data_Base!")
+
+    categories = CleanFile.select_categories(products)
+    print("We have ", len(categories),"categories!")
+
+    stores_tags = CleanFile.select_stores_tags(products)
+    print("Wee have ", len(stores_tags),"stores!")
+
+    _id_and_stores = CleanFile.select_id_and_stores_tags(products)
+    pprint.pprint(_id_and_stores)
 
 if __name__ == "__main__":
     pass

@@ -1,6 +1,6 @@
 import peewee
 from download_products import DataFiles
-import pprint
+
 
 pg_db = peewee.PostgresqlDatabase('Pure_Beurre', user='PureBeurre', password='12345678',
                            host='localhost', port=5432) # Connect to data base.
@@ -30,7 +30,7 @@ class Store(peewee.Model):
 Store.create_table()
 
 class Category(peewee.Model):
-    """ Class to define the Category table."""
+    """ Class to define the Category table."""    
     categories = peewee.TextField(primary_key=True)
 
     class Meta:                
@@ -41,7 +41,7 @@ Category.create_table()
 
 class Product(peewee.Model):
     """ Class to define the Product table."""
-    _id = peewee.CharField(primary_key=True)
+    _id = peewee.BigIntegerField(primary_key=True)
     categories = peewee.ForeignKeyField(Category, backref='product')
     ingredients_text_fr = peewee.TextField()
     nutrition_grade_fr = peewee.CharField()
@@ -91,30 +91,21 @@ class ProductStore(peewee.Model):
         db_table = 'product_store'
 
 ProductStore.create_table()
-   
-pr = DataFiles.snacks
 
-"""(marche_pas)""""""def rec_products():
-    try:
-        with pg_db.atomic():
-            Product.insert_many(pr)
-    except peewee.IntegrityError:
-        # `username` is a unique column, so this username already exists,
-        # making it safe to call .get().
-        return Product.get(Product._id == _id)
-ent_data = rec_products()"""
+"""
+Iport the products from download_products
+"""
+cat = DataFiles.categories
+stg = DataFiles.stores_tags  
+pr = DataFiles.products
 
-def insert_data():
-    try:
-        fields = [Product._id,
-         Product.product_name_fr,
-          Product.url,
-           Product.ingredients_text_fr,
-            Product.nutrition_grade_fr]
-            
-        query1 = Product.insert_many(pr, fields = fields)
-        query1.execute()
-    except peewee.IntegrityError:
-        pass
-i_p= insert_data()
+"""
+Insert all products in database
+"""
+query1 = Category.insert_many(cat)
+query2 = Store.insert_many(stg)  
+query3 = Product.insert_many(pr)
+query1.execute()
+query2.execute()        
+query3.execute()
         
