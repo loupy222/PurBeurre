@@ -75,7 +75,7 @@ class DataFiles:
 
     stores_tags = CleanFile.select_stores_tags(products)
     print("Wee have ", len(stores_tags),"stores!")
-
+    pprint.pprint(stores_tags)
     _id_and_stores = CleanFile.select_id_and_stores_tags(products)
     pprint.pprint(_id_and_stores)
 

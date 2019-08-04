@@ -122,6 +122,7 @@ class CleanFile:
                 if p_label == "stores_tags":
                     for i in p_value:
                         current_stores_tags.update({p_label:i})
+                        print(current_stores_tags)
                         processed_stores_tags.append(current_stores_tags)
 
         return processed_stores_tags
