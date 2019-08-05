@@ -107,22 +107,21 @@ class CleanFile:
                 processed_stores_tags.append(current_stores_tags)
         return processed_stores_tags
 
-    def select_id_and_stores_tags(file):
-        """
+
+    """def select_id_and_stores_tags(file):
+        """"""
         Search and records all store_tags for insert in data_base.
-        """
+        """"""
         products = file
         processed_stores_tags = []
         for product in products:
             current_stores_tags = {}
-            current_stores = []
             for p_label, p_value in product.items():
                 if p_label == "_id":
                     current_stores_tags.update({p_label: p_value})
                 if p_label == "stores_tags":
-                    for i in p_value:
-                        current_stores_tags.update({p_label:i})
+                    for v in p_value:
+                        current_stores_tags.update({p_label: v})
                         print(current_stores_tags)
                         processed_stores_tags.append(current_stores_tags)
-
-        return processed_stores_tags
+        return processed_stores_tags""" 
