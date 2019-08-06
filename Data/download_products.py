@@ -12,12 +12,14 @@ class DataFiles:
     drinks = list
     cheese = list
     pasta = list
-    products = list
-    categories = list
+    products_to_inser = list
+    categories_tags = list
     stores_tags = list
+    _id_and_stores = list
+    _id_and_categories = list
 
     """
-    Modul to download, clean and parse the products-file.
+    Modul xc to download, clean and parse the products-file.
     """
     link1 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=snacks&page_size=1000&search_simple=1&action=process&page=2&json=1"
     link2 = "https://fr.openfoodfacts.org/cgi/search.pl?%22category=pizza&page_size=1000&search_simple=1&action=process&page=2&json=1"
@@ -67,17 +69,23 @@ class DataFiles:
     print("We have now", len( l3 ), "all products downloaded, and cleaned!")
 
     products = l3
-    products = CleanFile.clean_products(products)
-    print("After a hard cleaning job we have", len(products), "let's put them in the Data_Base!")
+    products = CleanFile.eliminate_duplicate_products(products)
+    print("After a hard cleaning job we have", len(products), "good products! let's put them in the Data_Base!")
 
-    categories = CleanFile.select_categories(products)
-    print("We have ", len(categories),"categories!")
+    products_to_inser = CleanFile.products_to_inser(products) 
+    print(len(products_to_inser), "Products are ready to insert.")
+
+    categories_tags = CleanFile.select_categories(products)
+    print("We have ", len(categories_tags),"categories!")
 
     stores_tags = CleanFile.select_stores_tags(products)
     print("Wee have ", len(stores_tags),"stores!")
-    #pprint.pprint(stores_tags)
-    """_id_and_stores = CleanFile.select_id_and_stores_tags(products)
-    pprint.pprint(_id_and_stores)"""
+
+    _id_and_stores = CleanFile.select_id_and_stores_tags(products)
+    print(len(_id_and_stores), "Id and stores are ready to insert.")
+
+    _id_and_categories = CleanFile.select_id_and_categories(products)
+    print(len(_id_and_categories), "Id and categories are ready to insert.")
 
 if __name__ == "__main__":
     pass
