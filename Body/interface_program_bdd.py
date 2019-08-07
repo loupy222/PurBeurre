@@ -1,5 +1,3 @@
-import sys
-sys.path.append(r'C:\Users\loupy\OneDrive\Bureau\OPENCLASSROOMS\Projet5\PurBeurre\data')
 import peewee
 from dataclasses import dataclass
 from just_do_it import Basquets
@@ -86,7 +84,8 @@ class Querries:
     query= Category.select()
     proposed_categories = query.execute()
 
-    p_categories = Basquets.nike(proposed_categories)
-    print(p_categories)
+    """p_categories = Basquets.nike(proposed_categories)"""
+    for item in proposed_categories:
+        print(item)
 
 pg_db.close()    

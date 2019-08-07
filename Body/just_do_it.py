@@ -1,4 +1,3 @@
-from interface_program_bdd import Querries
 from dataclasses import dataclass
 from random import choice
 
